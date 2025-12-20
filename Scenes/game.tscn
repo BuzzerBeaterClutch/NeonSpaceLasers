@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1kfbri7exkpb"]
+[gd_scene load_steps=9 format=3 uid="uid://d1kfbri7exkpb"]
 
 [ext_resource type="PackedScene" uid="uid://dneq3a6swlh3d" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://bf8nteav1hrfg" path="res://Scripts/game.gd" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://bryiwybq0qr17" path="res://Scenes/ScoreLabel.gd" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://bdll2a33g67gm" path="res://Scripts/ScoreManager.gd" id="4_3dryh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
@@ -42,5 +44,22 @@ shape = SubResource("WorldBoundaryShape2D_3dryh")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="scoreLabels" type="StaticBody2D" parent="."]
+
+[node name="HighScore" type="RichTextLabel" parent="scoreLabels"]
+offset_right = 158.0
+offset_bottom = 35.0
+text = "Current Score:"
+script = ExtResource("3_wrm1d")
+
+[node name="CurrentWave" type="RichTextLabel" parent="scoreLabels"]
+offset_top = 18.0
+offset_right = 158.0
+offset_bottom = 53.0
+text = "Current Wave:"
+
+[node name="ScoreManager" type="Node2D" parent="."]
+script = ExtResource("4_3dryh")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
