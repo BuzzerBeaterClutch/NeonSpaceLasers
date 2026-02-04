@@ -8,17 +8,24 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="NeonSpaceLasers"
 run/main_scene="uid://d1kfbri7exkpb"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 
 [display]
 
-window/size/viewport_width=2176
-window/size/viewport_height=1100
 window/stretch/mode="canvas_items"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [global_group]
 
@@ -91,6 +98,5 @@ Shoot={
 
 [rendering]
 
-renderer/rendering_method="mobile"
 anti_aliasing/quality/msaa_2d=2
 environment/defaults/default_clear_color=Color(0.0315049, 0, 0.308018, 1)

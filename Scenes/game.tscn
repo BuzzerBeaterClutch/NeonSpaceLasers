@@ -1,65 +1,178 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1kfbri7exkpb"]
+[gd_scene format=3 uid="uid://d1kfbri7exkpb"]
 
 [ext_resource type="PackedScene" uid="uid://dneq3a6swlh3d" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://bf8nteav1hrfg" path="res://Scripts/game.gd" id="1_qxrlw"]
 [ext_resource type="Script" uid="uid://bryiwybq0qr17" path="res://Scenes/ScoreLabel.gd" id="3_wrm1d"]
 [ext_resource type="Script" uid="uid://bdll2a33g67gm" path="res://Scripts/ScoreManager.gd" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://dr11yoc0qlldf" path="res://Scripts/health.gd" id="4_wowpa"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
+distance = 198.00029
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
-distance = 74.0
+distance = -179.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrm1d"]
+distance = 485.0004
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dryh"]
+distance = -560.99854
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1274896883]
 script = ExtResource("1_qxrlw")
 
-[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+[node name="Player" parent="." unique_id=682947262 instance=ExtResource("1_ebmjs")]
 position = Vector2(579, 326)
 
-[node name="Wall" type="StaticBody2D" parent="."]
+[node name="Wall" type="StaticBody2D" parent="." unique_id=1352427233]
 
-[node name="Top" type="CollisionShape2D" parent="Wall"]
-position = Vector2(589, -221)
+[node name="Top" type="CollisionShape2D" parent="Wall" unique_id=1621331380]
+position = Vector2(589, -217)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
-[node name="Bottom" type="CollisionShape2D" parent="Wall"]
+[node name="Bottom" type="CollisionShape2D" parent="Wall" unique_id=1640070507]
 position = Vector2(600, 945)
 shape = SubResource("WorldBoundaryShape2D_qxrlw")
 
-[node name="Left" type="CollisionShape2D" parent="Wall"]
+[node name="Left" type="CollisionShape2D" parent="Wall" unique_id=1726803701]
 position = Vector2(-511, 306)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_wrm1d")
 
-[node name="Right" type="CollisionShape2D" parent="Wall"]
+[node name="Right" type="CollisionShape2D" parent="Wall" unique_id=254883210]
 position = Vector2(1651, 323)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_3dryh")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2059849313]
 wait_time = 0.5
 autostart = true
 
-[node name="scoreLabels" type="StaticBody2D" parent="."]
+[node name="ScoreManager" type="Node2D" parent="." unique_id=985465359]
+script = ExtResource("4_3dryh")
 
-[node name="HighScore" type="RichTextLabel" parent="scoreLabels"]
-offset_right = 158.0
+[node name="GameplayLabels" type="CanvasLayer" parent="." unique_id=891700851]
+
+[node name="HighScoreLabel" type="RichTextLabel" parent="GameplayLabels" unique_id=1429717491]
+offset_right = 210.0
 offset_bottom = 35.0
 text = "Current Score:"
 script = ExtResource("3_wrm1d")
 
-[node name="CurrentWave" type="RichTextLabel" parent="scoreLabels"]
+[node name="PlayerHealthLabel" type="RichTextLabel" parent="GameplayLabels" unique_id=1871268362]
 offset_top = 18.0
-offset_right = 158.0
-offset_bottom = 53.0
-text = "Current Wave:"
+offset_right = 215.0
+offset_bottom = 58.0
+text = "Player Health: "
+script = ExtResource("4_wowpa")
 
-[node name="ScoreManager" type="Node2D" parent="."]
-script = ExtResource("4_3dryh")
+[node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1481982521]
+
+[node name="GameOverControl" type="Control" parent="GameOverLayer" unique_id=1609166313]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverPanel" type="Panel" parent="GameOverLayer/GameOverControl" unique_id=101582082]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 8.0
+offset_right = 1172.0
+offset_bottom = 667.0
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverLayer/GameOverControl" unique_id=1617150280]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.8830001
+anchor_bottom = 1.6760001
+offset_left = -1.0
+offset_top = -6.0
+offset_right = -1007.21606
+offset_bottom = -416.0481
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameOverVBox" type="VBoxContainer" parent="GameOverLayer/GameOverControl/CenterContainer" unique_id=942278766]
+custom_minimum_size = Vector2(700, 274)
+layout_mode = 2
+alignment = 1
+
+[node name="GameOverLabel" type="RichTextLabel" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=10628230]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 60
+text = "            Game Over"
+fit_content = true
+
+[node name="Gap" type="VBoxContainer" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=1110345269]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GRetryButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=713730722]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+action_mode = 0
+text = "Retry"
+
+[node name="WinState" type="CanvasLayer" parent="." unique_id=1774790872]
+
+[node name="WinControl" type="Control" parent="WinState" unique_id=1794312929]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinPanel" type="Panel" parent="WinState/WinControl" unique_id=398370626]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 8.0
+offset_right = 1172.0
+offset_bottom = 667.0
+mouse_filter = 2
+
+[node name="WinContainer" type="CenterContainer" parent="WinState/WinControl" unique_id=1076294795]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.8830001
+anchor_bottom = 1.6760001
+offset_left = -1.0
+offset_top = -6.0
+offset_right = -1007.21606
+offset_bottom = -416.0481
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="WinVBox" type="VBoxContainer" parent="WinState/WinControl/WinContainer" unique_id=1288057646]
+custom_minimum_size = Vector2(700, 274)
+layout_mode = 2
+alignment = 1
+
+[node name="WinLabel" type="RichTextLabel" parent="WinState/WinControl/WinContainer/WinVBox" unique_id=2079149729]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 60
+text = "            You Win"
+fit_content = true
+
+[node name="MGap" type="VBoxContainer" parent="WinState/WinControl/WinContainer/WinVBox" unique_id=114123907]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WRetryButton" type="Button" parent="WinState/WinControl/WinContainer/WinVBox" unique_id=177386633]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+action_mode = 0
+text = "Retry"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

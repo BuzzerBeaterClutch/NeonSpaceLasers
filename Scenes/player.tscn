@@ -3,15 +3,17 @@
 [ext_resource type="Script" uid="uid://bg3xgiroxiw3t" path="res://Scripts/player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://ip63yf6kr4us" path="res://Assets/PlayerShip.png" id="2_gntrk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
-size = Vector2(122, 118)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(92, 104)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_kyqiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -1)
-shape = SubResource("RectangleShape2D_ij6vw")
+auto_translate_mode = 1
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -22,5 +24,5 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_gntrk")
 
 [node name="BulletOrigin" type="Node2D" parent="."]
-position = Vector2(0, -27.5)
+position = Vector2(59, -0.5)
 rotation = 1.5708

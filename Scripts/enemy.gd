@@ -33,8 +33,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func shoot_loop():
-	while true:
-		await get_tree().create_timer(fire_rate).timeout
+	while is_inside_tree():
+		var tree := get_tree()
+		if tree == null:
+			return
+		await tree.create_timer(fire_rate).timeout
+		if not is_inside_tree():
+			return
 		shoot()
 
 func shoot():
