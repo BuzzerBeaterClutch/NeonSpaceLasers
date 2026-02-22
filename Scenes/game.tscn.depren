@@ -74,7 +74,7 @@ offset_bottom = 60.0
 text = "High Score:"
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1481982521]
-process_mode = 2
+visible = false
 
 [node name="GameOverControl" type="Control" parent="GameOverLayer" unique_id=1609166313]
 layout_mode = 3
@@ -128,19 +128,7 @@ theme_override_font_sizes/font_size = 60
 action_mode = 0
 text = "Retry"
 
-[node name="SubmitButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=1922875897]
-process_mode = 3
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-action_mode = 0
-text = "Submit"
-
-[node name="NameInput" type="LineEdit" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=603141339]
-layout_mode = 2
-placeholder_text = "Input Name Here"
-
 [node name="WinState" type="CanvasLayer" parent="." unique_id=1774790872]
-process_mode = 2
 visible = false
 
 [node name="WinControl" type="Control" parent="WinState" unique_id=1794312929]

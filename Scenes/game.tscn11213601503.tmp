@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dneq3a6swlh3d" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://bf8nteav1hrfg" path="res://Scripts/game.gd" id="1_qxrlw"]
-[ext_resource type="Script" uid="uid://bryiwybq0qr17" path="res://Scenes/ScoreLabel.gd" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://bryiwybq0qr17" path="res://Scripts/ScoreLabel.gd" id="3_wrm1d"]
 [ext_resource type="Script" uid="uid://bdll2a33g67gm" path="res://Scripts/ScoreManager.gd" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://dr11yoc0qlldf" path="res://Scripts/health.gd" id="4_wowpa"]
 
@@ -74,7 +74,7 @@ offset_bottom = 60.0
 text = "High Score:"
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1481982521]
-process_mode = 2
+visible = false
 
 [node name="GameOverControl" type="Control" parent="GameOverLayer" unique_id=1609166313]
 layout_mode = 3
@@ -128,19 +128,7 @@ theme_override_font_sizes/font_size = 60
 action_mode = 0
 text = "Retry"
 
-[node name="SubmitButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=1922875897]
-process_mode = 3
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-action_mode = 0
-text = "Submit"
-
-[node name="NameInput" type="LineEdit" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=603141339]
-layout_mode = 2
-placeholder_text = "Input Name Here"
-
 [node name="WinState" type="CanvasLayer" parent="." unique_id=1774790872]
-process_mode = 2
 visible = false
 
 [node name="WinControl" type="Control" parent="WinState" unique_id=1794312929]

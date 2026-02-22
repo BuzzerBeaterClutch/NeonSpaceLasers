@@ -18,6 +18,10 @@ config/name="NeonSpaceLasers"
 run/main_scene="uid://d1kfbri7exkpb"
 config/features=PackedStringArray("4.6", "Mobile")
 
+[autoload]
+
+HScoreManager="*uid://dkwurr0t1mrw"
+
 [display]
 
 window/stretch/mode="canvas_items"
