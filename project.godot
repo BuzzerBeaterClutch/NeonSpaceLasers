@@ -15,7 +15,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="NeonSpaceLasers"
-run/main_scene="uid://d1kfbri7exkpb"
+config/version="1.1.1"
+run/main_scene="uid://boryapav5s08r"
 config/features=PackedStringArray("4.6", "Mobile")
 
 [autoload]

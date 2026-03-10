@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://boryapav5s08r"]
+
+[ext_resource type="FontFile" uid="uid://dbdpgmwrm8epn" path="res://Font/LochleypixelRegularDemo-4nVa9.otf" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://dpjppk1vwu8qm" path="res://Scripts/menu.gd" id="2_cayip"]
+[ext_resource type="Texture2D" uid="uid://8lshc5co38r1" path="res://Assets/2304.w018.n002.1746B.p15.1746.jpg" id="2_xhh6f"]
+
+[node name="Menu" type="Control" unique_id=1094037364]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuLabels" type="CanvasLayer" parent="." unique_id=1439307647]
+
+[node name="NameLabel" type="RichTextLabel" parent="MenuLabels" unique_id=1238052103]
+offset_left = 298.0
+offset_top = 81.0
+offset_right = 863.0
+offset_bottom = 188.0
+theme_override_fonts/normal_font = ExtResource("1_1rerr")
+theme_override_font_sizes/normal_font_size = 64
+text = "       NeonSpaceLasers"
+
+[node name="Buttons" type="CanvasLayer" parent="." unique_id=1718596961]
+
+[node name="SettingsButton" type="Button" parent="Buttons" unique_id=1285672639]
+offset_left = 487.0
+offset_top = 325.0
+offset_right = 673.0
+offset_bottom = 397.0
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+script = ExtResource("2_cayip")
+
+[node name="QuitButton" type="Button" parent="Buttons" unique_id=1660420535]
+offset_left = 487.0
+offset_top = 421.0
+offset_right = 673.0
+offset_bottom = 493.0
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+script = ExtResource("2_cayip")
+
+[node name="PlayButton" type="Button" parent="Buttons" unique_id=733024661]
+offset_left = 487.0
+offset_top = 226.0
+offset_right = 673.0
+offset_bottom = 298.0
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Play Game"
+script = ExtResource("2_cayip")
+
+[node name="2304_w018_n002_1746b_p15_1746" type="Sprite2D" parent="." unique_id=536346923]
+position = Vector2(583, 331)
+scale = Vector2(0.18727641, 0.22533333)
+texture = ExtResource("2_xhh6f")
+
+[connection signal="pressed" from="Buttons/SettingsButton" to="Buttons/SettingsButton" method="_on_settings_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="Buttons/PlayButton" method="_on_quit_pressed"]
+[connection signal="pressed" from="Buttons/PlayButton" to="Buttons/PlayButton" method="_on_play_pressed"]
