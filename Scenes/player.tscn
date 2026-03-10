@@ -1,26 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://dneq3a6swlh3d"]
+[gd_scene format=3 uid="uid://dneq3a6swlh3d"]
 
 [ext_resource type="Script" uid="uid://bg3xgiroxiw3t" path="res://Scripts/player.gd" id="1_kyqiw"]
-[ext_resource type="Texture2D" uid="uid://ip63yf6kr4us" path="res://Assets/PlayerShip.png" id="2_gntrk"]
+[ext_resource type="Texture2D" uid="uid://3fp71m08e1kp" path="res://Assets/Player.png" id="2_cvnsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
 size = Vector2(122, 118)
 
+<<<<<<< Updated upstream
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kyqiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_ij6vw")
+=======
+[node name="Player" type="CharacterBody2D" unique_id=192071608]
+collision_mask = 2
+script = ExtResource("1_kyqiw")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=637426103]
+auto_translate_mode = 1
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_cvnsp")
+>>>>>>> Stashed changes
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2040782942]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=751808787]
 z_as_relative = false
+position = Vector2(0.9206772, 0.95339584)
 rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("2_gntrk")
+scale = Vector2(0.13032496, 0.13876207)
+texture = ExtResource("2_cvnsp")
 
+<<<<<<< Updated upstream
 [node name="BulletOrigin" type="Node2D" parent="."]
 position = Vector2(0, -27.5)
+=======
+[node name="BulletOrigin" type="Node2D" parent="." unique_id=1993202493]
+position = Vector2(59, -0.5)
+>>>>>>> Stashed changes
 rotation = 1.5708

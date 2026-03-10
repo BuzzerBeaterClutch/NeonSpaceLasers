@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="NeonSpaceLasers"
+<<<<<<< Updated upstream
 run/main_scene="uid://d1kfbri7exkpb"
 config/features=PackedStringArray("4.5", "Mobile")
+=======
+config/version="1.1.1"
+run/main_scene="uid://boryapav5s08r"
+config/features=PackedStringArray("4.6", "Mobile")
+
+[autoload]
+
+HScoreManager="*uid://dkwurr0t1mrw"
+>>>>>>> Stashed changes
 
 [display]
 
