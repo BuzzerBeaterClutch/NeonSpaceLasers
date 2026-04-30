@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://dbdpgmwrm8epn" path="res://Font/LochleypixelRegularDemo-4nVa9.otf" id="1_1rerr"]
 [ext_resource type="Script" uid="uid://dpjppk1vwu8qm" path="res://Scripts/menu.gd" id="2_cayip"]
 [ext_resource type="Texture2D" uid="uid://8lshc5co38r1" path="res://Assets/2304.w018.n002.1746B.p15.1746.jpg" id="2_xhh6f"]
+[ext_resource type="AudioStream" uid="uid://6wdjja5ewarr" path="res://Assets/Sound Effects/MenuMusic.ogg" id="4_158mb"]
 
 [node name="Menu" type="Control" unique_id=1094037364]
 layout_mode = 3
@@ -19,9 +20,21 @@ offset_left = 298.0
 offset_top = 81.0
 offset_right = 863.0
 offset_bottom = 188.0
+theme_override_colors/default_color = Color(0.83137256, 0.5764706, 1, 1)
 theme_override_fonts/normal_font = ExtResource("1_1rerr")
 theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
 text = "       NeonSpaceLasers"
+
+[node name="VersionLabel" type="RichTextLabel" parent="MenuLabels" unique_id=906693021]
+offset_left = 1083.0
+offset_top = 596.0
+offset_right = 1147.0
+offset_bottom = 646.0
+theme_override_colors/default_color = Color(0.83137256, 0.5764706, 1, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "v1.0"
 
 [node name="Buttons" type="CanvasLayer" parent="." unique_id=1718596961]
 
@@ -30,6 +43,7 @@ offset_left = 487.0
 offset_top = 325.0
 offset_right = 673.0
 offset_bottom = 397.0
+theme_override_colors/font_color = Color(0.23529412, 0.64705884, 0.92156863, 1)
 theme_override_fonts/font = ExtResource("1_1rerr")
 theme_override_font_sizes/font_size = 32
 text = "Settings"
@@ -40,6 +54,7 @@ offset_left = 487.0
 offset_top = 421.0
 offset_right = 673.0
 offset_bottom = 493.0
+theme_override_colors/font_color = Color(1, 0.11764706, 0.30588236, 1)
 theme_override_fonts/font = ExtResource("1_1rerr")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
@@ -50,6 +65,7 @@ offset_left = 487.0
 offset_top = 226.0
 offset_right = 673.0
 offset_bottom = 298.0
+theme_override_colors/font_color = Color(0.50980395, 1, 0.36862746, 1)
 theme_override_fonts/font = ExtResource("1_1rerr")
 theme_override_font_sizes/font_size = 32
 action_mode = 0
@@ -60,6 +76,10 @@ script = ExtResource("2_cayip")
 position = Vector2(583, 331)
 scale = Vector2(0.18727641, 0.22533333)
 texture = ExtResource("2_xhh6f")
+
+[node name="testaudio" type="AudioStreamPlayer" parent="." unique_id=231258124]
+stream = ExtResource("4_158mb")
+autoplay = true
 
 [connection signal="pressed" from="Buttons/SettingsButton" to="Buttons/SettingsButton" method="_on_settings_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="Buttons/PlayButton" method="_on_quit_pressed"]

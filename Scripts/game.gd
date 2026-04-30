@@ -7,6 +7,7 @@ extends Node2D
 @onready var game_over_layer: CanvasLayer = $GameOverLayer
 @onready var game_over_text: RichTextLabel = $GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GameOverLabel
 @onready var retry_button: Button = $GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GRetryButton
+@onready var back_button: Button = $GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GBackToMainButton
 @onready var win_layer: CanvasLayer = $WinState
 @onready var win_text: RichTextLabel = $WinState/WinControl/WinContainer/WinVBox/WinLabel
 @onready var wretry_button: Button = $WinState/WinControl/WinContainer/WinVBox/WRetryButton
@@ -21,9 +22,6 @@ var enemies_remaining = 0
 
 func _ready():
 	player.died.connect(_on_player_died)
-	retry_button.pressed.connect(_on_retry_pressed)
-	wretry_button.pressed.connect(_on_retry_pressed)
-	submit_button.pressed.connect(_on_submit_score_pressed)
 	game_over_layer.hide()
 	win_layer.hide()
 	
@@ -81,7 +79,7 @@ func _on_player_died():
 	game_over = true
 	game_over_layer.show()
 	get_tree().paused = true
-
+	
 	if HScoreManager.is_new_high_score(score_manager.score):
 		game_over_text.text = "NEW HIGH SCORE!\nEnter Name:"
 		name_input.show()
@@ -98,6 +96,11 @@ func _on_retry_pressed():
 	get_tree().reload_current_scene()
 	game_over_layer.hide()
 	print("Retry")
+	
+func _on_back_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
+	print("Return To Main Menu")
 
 func _on_submit_score_pressed():
 	var player_name := name_input.text

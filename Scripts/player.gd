@@ -6,7 +6,7 @@ var bullet_asset = preload("res://Scenes/playerbullet.tscn")
 const speed = 400
 var is_dead := false
 @onready var bulletorigin = $BulletOrigin
-
+@onready var bulletsound = $sfx_shoot
 signal died
 
 func get_input():
@@ -19,6 +19,7 @@ func get_input():
 
 func shoot():
 	var bullet = bullet_asset.instantiate()
+	bulletsound.play()
 	bullet.global_position = bulletorigin.global_position
 	bullet.direction = (get_global_mouse_position() - global_position).normalized()
 	$/root/Game.add_child(bullet)

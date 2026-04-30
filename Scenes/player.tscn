@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bg3xgiroxiw3t" path="res://Scripts/player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://3fp71m08e1kp" path="res://Assets/Player.png" id="2_cvnsp"]
+[ext_resource type="AudioStream" uid="uid://bki3g5i1k1d1e" path="res://Assets/Sound Effects/playerlasersound.mp3" id="3_6t5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(92, 104)
@@ -27,3 +28,6 @@ texture = ExtResource("2_cvnsp")
 [node name="BulletOrigin" type="Node2D" parent="." unique_id=1993202493]
 position = Vector2(59, -0.5)
 rotation = 1.5708
+
+[node name="sfx_shoot" type="AudioStreamPlayer" parent="." unique_id=570969057]
+stream = ExtResource("3_6t5aa")

@@ -24,16 +24,6 @@ distance = -860.9999
 [node name="Game" type="Node2D" unique_id=1274896883]
 script = ExtResource("1_qxrlw")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1293392740]
-repeat_times = 2
-
-[node name="2306_w018_n002_1999b_p15_1999" type="Sprite2D" parent="Parallax2D" unique_id=22411772]
-texture_repeat = 2
-position = Vector2(603.99994, 384.99997)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("7_1l0tm")
-flip_v = true
-
 [node name="Player" parent="." unique_id=682947262 instance=ExtResource("1_ebmjs")]
 top_level = true
 position = Vector2(579, 326)
@@ -151,6 +141,14 @@ theme_override_font_sizes/font_size = 60
 action_mode = 0
 text = "Retry"
 
+[node name="GBackToMainButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=585047779]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_i6g32")
+theme_override_font_sizes/font_size = 60
+action_mode = 0
+text = "Quit"
+
 [node name="SubmitButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=1922875897]
 process_mode = 3
 layout_mode = 2
@@ -220,4 +218,17 @@ theme_override_font_sizes/font_size = 60
 action_mode = 0
 text = "Retry"
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1083481432]
+
+[node name="2306_w018_n002_1999b_p15_1999" type="Sprite2D" parent="ParallaxBackground" unique_id=22411772]
+texture_repeat = 2
+position = Vector2(604.50006, 327)
+scale = Vector2(0.182, 0.22866666)
+texture = ExtResource("7_1l0tm")
+flip_v = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GRetryButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GBackToMainButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/SubmitButton" to="." method="_on_submit_score_pressed"]
+[connection signal="pressed" from="WinState/WinControl/WinContainer/WinVBox/WRetryButton" to="." method="_on_retry_pressed"]

@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal defeated
 
 @onready var player = $/root/Game/Player
-
+@onready var sfx_eshoot: AudioStreamPlayer = $sfx_eshoot
 @export var max_health := 30
 var health := max_health
 
@@ -19,7 +19,7 @@ func _ready():
 	shoot_loop()
 
 func _physics_process(delta: float) -> void:
-	if player == null:
+	if player == null && get_node("/root/Game").game_over:
 		return
 
 	var to_player = global_position - player.global_position
@@ -40,13 +40,17 @@ func shoot_loop():
 		await tree.create_timer(fire_rate).timeout
 		if not is_inside_tree():
 			return
+			
+		if get_node("/root/Game").game_over:
+			return
+		
 		shoot()
 
 func shoot():
-	if player == null:
+	if player == null || get_node("/root/Game").game_over:
 		return
-
 	var bullet = bullet_asset.instantiate()
+	sfx_eshoot.play()
 	bullet.global_position = global_position
 	bullet.direction = (player.global_position - global_position).normalized()
 	$/root/Game.add_child(bullet)
