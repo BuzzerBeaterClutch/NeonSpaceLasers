@@ -1,15 +1,12 @@
-extends Area2D
-
-@export var damage := 10
-var direction: Vector2
-const SPEED := 10
-
-func _physics_process(delta: float) -> void:
-	global_position += direction * SPEED
+extends BulletBase
 
 func _on_body_entered(body):
-	if body == owner:
+
+	if body == bullet_owner:
 		return
-	if body.has_method("take_damage"):
+
+	if body.is_in_group("enemies"):
+
 		body.take_damage(damage)
-	queue_free()
+
+		destroy()

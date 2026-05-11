@@ -2,8 +2,10 @@ extends Node2D
 
 @onready var score_manager = $ScoreManager
 @onready var score_label = $GameplayLabels/CurrentScoreLabel
+@onready var leaderboard_label = $LeaderboardListLabel
 @onready var high_score_label: RichTextLabel = $GameplayLabels/HighScore
 @onready var player = $Player
+@onready var parallax = $ParallaxBackground
 @onready var game_over_layer: CanvasLayer = $GameOverLayer
 @onready var game_over_text: RichTextLabel = $GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GameOverLabel
 @onready var retry_button: Button = $GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GRetryButton
@@ -16,7 +18,7 @@ extends Node2D
 var enemy_scene = preload("res://Scenes/enemy.tscn")
 var game_over:= false
 var endless_mode: bool = false
-var max_waves: int = 5
+var max_waves: int = 20
 var current_wave = 1
 var enemies_remaining = 0
 
@@ -27,6 +29,10 @@ func _ready():
 	
 	_update_high_score_label()
 	start_wave()
+
+func _process(delta):
+	parallax.scroll_offset.y += 200 * delta
+	
 
 func start_wave():
 	enemies_remaining = current_wave * 2
@@ -57,10 +63,12 @@ func _on_enemy_defeated():
 			await get_tree().create_timer(2.0).timeout
 			start_wave()
 			return
-		var is_new_best := HScoreManager.is_new_high_score(score_manager.score)
-		# If NOT endless mode → check if game finished
+		var is_new_best := LeaderboardManager.is_high_score(score_manager.score)
 		if current_wave >= max_waves:
-			HScoreManager.submit_score("Random",score_manager.score)
+			LeaderboardManager.submit_score(
+				"Player",
+				score_manager.score
+			)
 			_update_high_score_label()
 
 			if is_new_best:
@@ -76,24 +84,24 @@ func _on_enemy_defeated():
 			start_wave()
 		
 func _on_player_died():
+
 	game_over = true
+
 	game_over_layer.show()
+
+	name_input.grab_focus()
+
 	get_tree().paused = true
-	
-	if HScoreManager.is_new_high_score(score_manager.score):
-		game_over_text.text = "NEW HIGH SCORE!\nEnter Name:"
-		name_input.show()
-		submit_button.show()
-		name_input.text = ""
-		name_input.grab_focus()
-	else:
-		game_over_text.text = "GAME OVER\nScore: %d" % score_manager.score
-		name_input.hide()
-		submit_button.hide()
 	
 func _on_retry_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+	game_over_layer.hide()
+	print("Retry")
+
+func _on_quit_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 	game_over_layer.hide()
 	print("Retry")
 	
@@ -108,7 +116,10 @@ func _on_submit_score_pressed():
 	if player_name.strip_edges() == "":
 		player_name = "Anonymous"
 
-	HScoreManager.submit_score(player_name, score_manager.score)
+	LeaderboardManager.submit_score(
+		player_name,
+		score_manager.score
+	)
 	_update_high_score_label()
 
 	name_input.hide()
@@ -117,4 +128,9 @@ func _on_submit_score_pressed():
 	game_over_text.text = "SAVED!\n%s - %d" % [player_name, score_manager.score]
 
 func _update_high_score_label() -> void:
-	high_score_label.text = "High Score: %d" % HScoreManager.best_score
+	var scores = LeaderboardManager.get_scores()
+
+	if scores.size() > 0:
+		high_score_label.text = "High Score: %d" % scores[0]["score"]
+	else:
+		high_score_label.text = "High Score: 0"

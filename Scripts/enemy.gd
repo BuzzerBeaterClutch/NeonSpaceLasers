@@ -14,9 +14,7 @@ var bullet_asset = preload("res://Scenes/enemybullet.tscn")
 @export var fire_rate := 1.5
 
 const SPEED = 100
-
-func _ready():
-	shoot_loop()
+var angle_offset := 0.0
 
 func _physics_process(delta: float) -> void:
 	if player == null && get_node("/root/Game").game_over:
@@ -26,11 +24,25 @@ func _physics_process(delta: float) -> void:
 	var distance = to_player.length()
 	var radial_dir = to_player.normalized()
 	var correction = (orbit_radius - distance) * radial_dir
-	var tangent = Vector2(-radial_dir.y, radial_dir.x)
-
+	var tangent = Vector2(-radial_dir.y, radial_dir.x).rotated(angle_offset)
 	velocity = (tangent * SPEED) + correction
+	
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy != self:
+			var diff = global_position - enemy.global_position
+			var dist = diff.length()
+			
+			if dist < 100: # bigger influence radius
+				var strength = (500 - dist) / 500.0  # closer = stronger push
+				velocity += diff.normalized() * strength * 500
 	look_at(player.global_position)
 	move_and_slide()
+
+func _ready():
+	add_to_group("enemies")
+	angle_offset = randf() * TAU
+	shoot_loop()
+
 
 func shoot_loop():
 	while is_inside_tree():

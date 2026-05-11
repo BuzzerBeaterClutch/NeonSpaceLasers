@@ -24,3 +24,4 @@ texture = ExtResource("1_hghv2")
 
 [node name="sfx_eshoot" type="AudioStreamPlayer" parent="." unique_id=303813792]
 stream = ExtResource("3_afpow")
+volume_db = -0.5
