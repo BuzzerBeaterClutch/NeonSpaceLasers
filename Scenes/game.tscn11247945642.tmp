@@ -2,56 +2,48 @@
 
 [ext_resource type="PackedScene" uid="uid://dneq3a6swlh3d" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://bf8nteav1hrfg" path="res://Scripts/game.gd" id="1_qxrlw"]
-[ext_resource type="Script" uid="uid://bryiwybq0qr17" path="res://Scenes/ScoreLabel.gd" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://bryiwybq0qr17" path="res://ScoreLabel.gd" id="3_wrm1d"]
 [ext_resource type="Script" uid="uid://bdll2a33g67gm" path="res://Scripts/ScoreManager.gd" id="4_3dryh"]
-[ext_resource type="FontFile" uid="uid://dbdpgmwrm8epn" path="res://Font/LochleypixelRegularDemo-4nVa9.otf" id="4_i6g32"]
 [ext_resource type="Script" uid="uid://dr11yoc0qlldf" path="res://Scripts/health.gd" id="4_wowpa"]
-[ext_resource type="Texture2D" uid="uid://dxuyv8yigf2je" path="res://Assets/2306.w018.n002.1999B.p15.1999.jpg" id="7_1l0tm"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
-distance = -58.0
+distance = 198.00029
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qxrlw"]
-normal = Vector2(-0.008695323, -0.9999622)
-distance = -91.94435
+distance = -179.0
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1l0tm"]
-distance = -9.000122
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrm1d"]
+distance = 485.0004
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dryh"]
-distance = -860.9999
+distance = -560.99854
 
 [node name="Game" type="Node2D" unique_id=1274896883]
 script = ExtResource("1_qxrlw")
 
 [node name="Player" parent="." unique_id=682947262 instance=ExtResource("1_ebmjs")]
-top_level = true
 position = Vector2(579, 326)
 
 [node name="Wall" type="StaticBody2D" parent="." unique_id=1352427233]
 
 [node name="Top" type="CollisionShape2D" parent="Wall" unique_id=1621331380]
-top_level = true
 position = Vector2(589, -217)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
 [node name="Bottom" type="CollisionShape2D" parent="Wall" unique_id=1640070507]
-top_level = true
-position = Vector2(644, 838)
+position = Vector2(600, 945)
 shape = SubResource("WorldBoundaryShape2D_qxrlw")
 
 [node name="Left" type="CollisionShape2D" parent="Wall" unique_id=1726803701]
-top_level = true
+position = Vector2(-511, 306)
 rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_1l0tm")
+shape = SubResource("WorldBoundaryShape2D_wrm1d")
 
 [node name="Right" type="CollisionShape2D" parent="Wall" unique_id=254883210]
-top_level = true
-position = Vector2(1155, 252)
+position = Vector2(1651, 323)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_3dryh")
-one_way_collision = true
 
 [node name="Timer" type="Timer" parent="." unique_id=2059849313]
 wait_time = 0.5
@@ -65,27 +57,24 @@ script = ExtResource("4_3dryh")
 [node name="CurrentScoreLabel" type="RichTextLabel" parent="GameplayLabels" unique_id=1429717491]
 offset_right = 210.0
 offset_bottom = 23.0
-theme_override_fonts/normal_font = ExtResource("4_i6g32")
 text = "Current Score:"
 script = ExtResource("3_wrm1d")
 
 [node name="PlayerHealthLabel" type="RichTextLabel" parent="GameplayLabels" unique_id=1871268362]
-offset_top = 34.0
+offset_top = 18.0
 offset_right = 215.0
-offset_bottom = 57.0
-theme_override_fonts/normal_font = ExtResource("4_i6g32")
+offset_bottom = 41.0
 text = "Player Health: "
 script = ExtResource("4_wowpa")
 
 [node name="HighScore" type="RichTextLabel" parent="GameplayLabels" unique_id=1671566614]
-offset_top = 68.0
+offset_top = 36.0
 offset_right = 146.0
-offset_bottom = 92.0
-theme_override_fonts/normal_font = ExtResource("4_i6g32")
+offset_bottom = 60.0
 text = "High Score:"
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1481982521]
-process_mode = 2
+visible = false
 
 [node name="GameOverControl" type="Control" parent="GameOverLayer" unique_id=1609166313]
 layout_mode = 3
@@ -99,8 +88,8 @@ grow_vertical = 2
 layout_mode = 0
 offset_left = 3.0
 offset_top = 8.0
-offset_right = 1295.0
-offset_bottom = 722.0
+offset_right = 1172.0
+offset_bottom = 667.0
 mouse_filter = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="GameOverLayer/GameOverControl" unique_id=1617150280]
@@ -124,12 +113,9 @@ alignment = 1
 [node name="GameOverLabel" type="RichTextLabel" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=10628230]
 clip_contents = false
 layout_mode = 2
-theme_override_colors/default_color = Color(0.83137256, 0.5764706, 1, 1)
-theme_override_fonts/normal_font = ExtResource("4_i6g32")
 theme_override_font_sizes/normal_font_size = 60
-text = "Game Over"
+text = "            Game Over"
 fit_content = true
-horizontal_alignment = 1
 
 [node name="Gap" type="VBoxContainer" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=1110345269]
 layout_mode = 2
@@ -138,37 +124,12 @@ size_flags_vertical = 3
 [node name="GRetryButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=713730722]
 process_mode = 3
 layout_mode = 2
-theme_override_colors/font_color = Color(0.50980395, 1, 0.36862746, 1)
-theme_override_fonts/font = ExtResource("4_i6g32")
 theme_override_font_sizes/font_size = 60
 action_mode = 0
 text = "Retry"
 
-[node name="GBackToMainButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=585047779]
-process_mode = 3
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.11764706, 0.30588236, 1)
-theme_override_fonts/font = ExtResource("4_i6g32")
-theme_override_font_sizes/font_size = 60
-action_mode = 0
-text = "Quit"
-
-[node name="SubmitButton" type="Button" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=1922875897]
-process_mode = 3
-layout_mode = 2
-theme_override_colors/font_color = Color(0.23529412, 0.64705884, 0.92156863, 1)
-theme_override_fonts/font = ExtResource("4_i6g32")
-theme_override_font_sizes/font_size = 60
-action_mode = 0
-text = "Submit"
-
-[node name="NameInput" type="LineEdit" parent="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox" unique_id=603141339]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_i6g32")
-placeholder_text = "Input Name Here"
-
 [node name="WinState" type="CanvasLayer" parent="." unique_id=1774790872]
-process_mode = 2
+visible = false
 
 [node name="WinControl" type="Control" parent="WinState" unique_id=1794312929]
 layout_mode = 3
@@ -182,8 +143,8 @@ grow_vertical = 2
 layout_mode = 0
 offset_left = 3.0
 offset_top = 8.0
-offset_right = 1295.0
-offset_bottom = 725.0
+offset_right = 1172.0
+offset_bottom = 667.0
 mouse_filter = 2
 
 [node name="WinContainer" type="CenterContainer" parent="WinState/WinControl" unique_id=1076294795]
@@ -193,8 +154,8 @@ anchor_right = 1.8830001
 anchor_bottom = 1.6760001
 offset_left = -1.0
 offset_top = -6.0
-offset_right = -1112.2402
-offset_bottom = -490.7201
+offset_right = -1007.21606
+offset_bottom = -416.0481
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -207,12 +168,8 @@ alignment = 1
 [node name="WinLabel" type="RichTextLabel" parent="WinState/WinControl/WinContainer/WinVBox" unique_id=2079149729]
 clip_contents = false
 layout_mode = 2
-theme_override_colors/default_color = Color(0.6862745, 0.25490198, 0.5882353, 1)
-theme_override_fonts/normal_font = ExtResource("4_i6g32")
-theme_override_fonts/bold_font = ExtResource("4_i6g32")
-theme_override_fonts/bold_italics_font = ExtResource("4_i6g32")
-theme_override_font_sizes/normal_font_size = 74
-text = "             You Win"
+theme_override_font_sizes/normal_font_size = 60
+text = "            You Win"
 fit_content = true
 
 [node name="MGap" type="VBoxContainer" parent="WinState/WinControl/WinContainer/WinVBox" unique_id=114123907]
@@ -222,36 +179,8 @@ size_flags_vertical = 3
 [node name="WRetryButton" type="Button" parent="WinState/WinControl/WinContainer/WinVBox" unique_id=177386633]
 process_mode = 3
 layout_mode = 2
-theme_override_colors/font_color = Color(0.50980395, 1, 0.36862746, 1)
-theme_override_fonts/font = ExtResource("4_i6g32")
 theme_override_font_sizes/font_size = 60
 action_mode = 0
 text = "Retry"
 
-[node name="WQuitButton" type="Button" parent="WinState/WinControl/WinContainer/WinVBox" unique_id=1998983563]
-process_mode = 3
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.11764706, 0.30588236, 1)
-theme_override_fonts/font = ExtResource("4_i6g32")
-theme_override_font_sizes/font_size = 60
-action_mode = 0
-text = "Quit"
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1083481432]
-
-[node name="Background" type="ParallaxLayer" parent="ParallaxBackground" unique_id=296382086]
-motion_mirroring = Vector2(1280, 720)
-
-[node name="2306_w018_n002_1999b_p15_1999" type="Sprite2D" parent="ParallaxBackground/Background" unique_id=22411772]
-texture_repeat = 2
-position = Vector2(604.50006, 366)
-scale = Vector2(0.182, 0.25466666)
-texture = ExtResource("7_1l0tm")
-flip_v = true
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GRetryButton" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/GBackToMainButton" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="GameOverLayer/GameOverControl/CenterContainer/GameOverVBox/SubmitButton" to="." method="_on_submit_score_pressed"]
-[connection signal="pressed" from="WinState/WinControl/WinContainer/WinVBox/WRetryButton" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="WinState/WinControl/WinContainer/WinVBox/WQuitButton" to="." method="_on_quit_pressed"]

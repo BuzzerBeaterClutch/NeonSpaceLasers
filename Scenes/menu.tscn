@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://boryapav5s08r"]
+
+[ext_resource type="FontFile" uid="uid://dbdpgmwrm8epn" path="res://Font/LochleypixelRegularDemo-4nVa9.otf" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://dpjppk1vwu8qm" path="res://Scripts/menu.gd" id="2_cayip"]
+[ext_resource type="Texture2D" uid="uid://8lshc5co38r1" path="res://Assets/2304.w018.n002.1746B.p15.1746.jpg" id="2_xhh6f"]
+
+[node name="Menu" type="Control" unique_id=1094037364]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuLabels" type="CanvasLayer" parent="." unique_id=1439307647]
+
+[node name="NameLabel" type="RichTextLabel" parent="MenuLabels" unique_id=1238052103]
+offset_left = 378.0
+offset_top = 81.0
+offset_right = 943.0
+offset_bottom = 188.0
+theme_override_colors/default_color = Color(0.83137256, 0.5764706, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_1rerr")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "       NeonSpaceLasers"
+
+[node name="VersionLabel" type="RichTextLabel" parent="MenuLabels" unique_id=906693021]
+offset_left = 1197.0
+offset_top = 652.0
+offset_right = 1261.0
+offset_bottom = 702.0
+theme_override_colors/default_color = Color(0.83137256, 0.5764706, 1, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "v1.1"
+
+[node name="Buttons" type="CanvasLayer" parent="." unique_id=1718596961]
+
+[node name="LeaderboardButton" type="Button" parent="Buttons" unique_id=1285672639]
+offset_left = 567.0
+offset_top = 325.0
+offset_right = 753.0
+offset_bottom = 397.0
+theme_override_colors/font_color = Color(0.23529412, 0.64705884, 0.92156863, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 32
+text = "Leaderboard
+"
+script = ExtResource("2_cayip")
+
+[node name="QuitButton" type="Button" parent="Buttons" unique_id=1660420535]
+offset_left = 567.0
+offset_top = 421.0
+offset_right = 753.0
+offset_bottom = 493.0
+theme_override_colors/font_color = Color(1, 0.11764706, 0.30588236, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+script = ExtResource("2_cayip")
+
+[node name="PlayButton" type="Button" parent="Buttons" unique_id=733024661]
+offset_left = 567.0
+offset_top = 226.0
+offset_right = 753.0
+offset_bottom = 298.0
+theme_override_colors/font_color = Color(0.50980395, 1, 0.36862746, 1)
+theme_override_fonts/font = ExtResource("1_1rerr")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Play Game"
+script = ExtResource("2_cayip")
+
+[node name="2304_w018_n002_1746b_p15_1746" type="Sprite2D" parent="." unique_id=536346923]
+position = Vector2(645.5, 356.50003)
+scale = Vector2(0.20671955, 0.24233335)
+texture = ExtResource("2_xhh6f")
+
+[connection signal="pressed" from="Buttons/LeaderboardButton" to="Buttons/LeaderboardButton" method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="Buttons/PlayButton" method="_on_quit_pressed"]
+[connection signal="pressed" from="Buttons/PlayButton" to="Buttons/PlayButton" method="_on_play_pressed"]
